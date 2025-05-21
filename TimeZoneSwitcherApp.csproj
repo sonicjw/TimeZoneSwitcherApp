@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <RootNamespace>TimeZoneSwitcherApp</RootNamespace>
+    <AssemblyName>TimeZoneSwitcherApp</AssemblyName>
+    <PlatformTarget>x86</PlatformTarget>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+   <Content Include="app.ico">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+   </Content>
+   <Compile Update="AppResources.Designer.cs">
+     <AutoGen>True</AutoGen>
+     <DesignTime>True</DesignTime>
+     <DependentUpon>AppResources.resx</DependentUpon>
+   </Compile>
+  </ItemGroup>
+
+</Project>
