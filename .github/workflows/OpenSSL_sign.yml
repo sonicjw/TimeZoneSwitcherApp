@@ -1,0 +1,29 @@
+name: Sign and Verify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up signing key
+        run: |
+          echo "${{ secrets.SIGNING_KEY }}" > private.pem
+          chmod 600 private.pem
+
+      - name: Create a file to sign
+        run: echo "This is a test file" > file.txt
+
+      - name: Sign the file
+        run: |
+          openssl dgst -sha256 -sign private.pem -out file.sig file.txt
+
+      - name: Verify the signature
+        run: |
+          openssl dgst -sha256 -verify public.pem -signature file.sig file.txt
