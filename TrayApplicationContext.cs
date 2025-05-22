@@ -145,14 +145,13 @@ namespace TimeZoneSwitcherApp
         }
 
         // Core Logic Methods
-        private void SwitchTimeZone(string timeZoneId)
+        private static void SwitchTimeZone(string timeZoneId)
         {
             try
             {
-                ProcessStartInfo psi = new ProcessStartInfo("tzutil.exe", $"/s \"{timeZoneId}\"")
+                ProcessStartInfo psi = new("tzutil.exe", $"/s \"{timeZoneId}\"")
                 {
-                    // 修改为请求UAC提升而非默认要求管理员权限
-                    Verb = "runas",
+                    Verb = "runas", // Request administrator privileges
                     UseShellExecute = true,
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden

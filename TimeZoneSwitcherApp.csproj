@@ -10,6 +10,7 @@
     <AssemblyName>TimeZoneSwitcherApp</AssemblyName>
     <PlatformTarget>x86</PlatformTarget>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+<<<<<<< HEAD
     <!-- 添加MSIX打包支持 -->
     <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
     <AppxPackageSigningEnabled>true</AppxPackageSigningEnabled>
@@ -21,6 +22,8 @@
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
     <PublishReadyToRun>false</PublishReadyToRun>
     <PublishTrimmed>false</PublishTrimmed>
+=======
+>>>>>>> b4a4532 (Initial commit)
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,9 +37,12 @@
    </Compile>
   </ItemGroup>
 
+<<<<<<< HEAD
   <!-- 添加MSIX打包引用 -->
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
   </ItemGroup>
 
+=======
+>>>>>>> b4a4532 (Initial commit)
 </Project>
