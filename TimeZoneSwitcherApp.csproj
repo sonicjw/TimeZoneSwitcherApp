@@ -14,6 +14,13 @@
     <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
     <AppxPackageSigningEnabled>true</AppxPackageSigningEnabled>
     <PackageCertificateThumbprint><!-- 您的证书指纹 --></PackageCertificateThumbprint>
+    
+    <!-- 添加依赖框架发布配置 -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <PublishTrimmed>false</PublishTrimmed>
   </PropertyGroup>
 
   <ItemGroup>
