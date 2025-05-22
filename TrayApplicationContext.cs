@@ -151,7 +151,8 @@ namespace TimeZoneSwitcherApp
             {
                 ProcessStartInfo psi = new ProcessStartInfo("tzutil.exe", $"/s \"{timeZoneId}\"")
                 {
-                    Verb = "runas", // Request administrator privileges
+                    // 修改为请求UAC提升而非默认要求管理员权限
+                    Verb = "runas",
                     UseShellExecute = true,
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden

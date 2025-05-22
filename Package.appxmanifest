@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
+  
+  <Identity
+    Name="YourCompanyName.TimeZoneSwitcher"
+    Publisher="CN=YourPublisherName"
+    Version="1.0.0.0" />
+    
+  <Properties>
+    <DisplayName>Time Zone Switcher</DisplayName>
+    <PublisherDisplayName>Your Name</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+  </Dependencies>
+  
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  
+  <Applications>
+    <Application Id="App" Executable="TimeZoneSwitcherApp.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements
+        DisplayName="Time Zone Switcher"
+        Description="应用程序用于快速切换时区和防止锁屏"
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+      </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="timezoneswitcher">
+            <uap:DisplayName>Time Zone Switcher Protocol</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+    <rescap:Capability Name="allowElevation" />
+  </Capabilities>
+</Package>
