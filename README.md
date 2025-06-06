@@ -1,60 +1,60 @@
 # Time Zone Switcher App
 
-一个简单实用的Windows托盘应用程序，用于快速切换时区和防止屏幕锁定。
+A simple and practical Windows tray application for quickly switching time zones and preventing screen lock.
 
-## 功能特点
+## Features
 
-- 快速切换时区（美国东部时间和欧洲阿姆斯特丹时间）
-- 防止屏幕锁定功能
-- 系统托盘图标，方便操作
-- 轻量级应用，资源占用少
+- Quick time zone switching (US Eastern Time and Amsterdam Time)
+- Screen lock prevention functionality
+- System tray icon for easy operation
+- Lightweight application with minimal resource usage
 
-## 系统要求
+## System Requirements
 
-- Windows 10/11
-- .NET 6.0 运行时
+- Windows 10 or Windows 11
+- .NET 6.0 Runtime
 
-## 安装方法
+## Installation
 
-### 方法一：直接下载
+### Method 1: Direct Download
 
-1. 从[Releases](https://github.com/您的用户名/TimeZoneSwitcherApp/releases)页面下载最新版本
-2. 解压缩文件
-3. 运行TimeZoneSwitcherApp.exe
+1. Download the latest version from the [Releases](https://github.com/yourusername/TimeZoneSwitcherApp/releases) page
+2. Extract the files
+3. Run TimeZoneSwitcherApp.exe
 
-### 方法二：从源代码编译
+### Method 2: Build from Source
 
-1. 克隆仓库：`git clone https://github.com/您的用户名/TimeZoneSwitcherApp.git`
-2. 使用Visual Studio 2022或更高版本打开解决方案
-3. 编译并运行项目
+1. Clone the repository: `git clone https://github.com/yourusername/TimeZoneSwitcherApp.git`
+2. Open the solution with Visual Studio 2022 or later
+3. Build and run the project
 
-## 使用说明
+## Usage
 
-1. 启动应用程序后，它将在系统托盘中显示图标
-2. 右键点击图标，选择以下选项：
-   - "Switch to US Eastern Time"：切换到美国东部时间
-   - "Switch to Amsterdam Time (W. Europe)"：切换到欧洲阿姆斯特丹时间
-   - "Enable Prevent Lock Screen"：启用防止屏幕锁定功能
-   - "Disable Prevent Lock Screen"：禁用防止屏幕锁定功能
-   - "Exit"：退出应用程序
+1. After starting the application, it will display an icon in the system tray
+2. Right-click the icon and select from the following options:
+- "Switch to US Eastern Time": Switch to US Eastern Time
+- "Switch to Amsterdam Time (W. Europe)": Switch to Amsterdam Time
+- "Enable Prevent Lock Screen": Enable screen lock prevention
+- "Disable Prevent Lock Screen": Disable screen lock prevention
+- "Exit": Exit the application
 
-## 注意事项
+## Notes
 
-- 切换时区需要管理员权限，会弹出UAC提示
-- 防止屏幕锁定功能会增加电脑功耗
+- Switching time zones requires administrator privileges and will show a UAC prompt
+- Screen lock prevention will increase power consumption
 
-## 版本历史
+## Version History
 
-### 版本 1.0.0 (2023年12月15日)
+### Version 1.0.0 (December 15, 2023)
 
-- 初始版本发布
-- 支持快速切换美国东部时间和欧洲阿姆斯特丹时间
-- 添加防止屏幕锁定功能
+- Initial release
+- Support for quick switching between US Eastern Time and Amsterdam Time
+- Added screen lock prevention functionality
 
-## 许可证
+## License
 
-[MIT License](LICENSE)
+MIT License
 
-## 贡献
+## Contributing
 
-欢迎提交问题和拉取请求！
+Issues and pull requests are welcome!

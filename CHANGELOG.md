@@ -1,20 +1,20 @@
-# 更新日志
+# Changelog
 
-所有对项目的显著更改都将记录在此文件中。
+All notable changes to this project will be documented in this file.
 
 ## [1.0.0] - 2023-12-15
 
-### 新增
+### Added
 
-- 初始版本发布
-- 系统托盘应用程序，带有上下文菜单
-- 支持快速切换美国东部时间和欧洲阿姆斯特丹时间
-- 添加防止屏幕锁定功能
-- 应用程序图标和基本UI
-- 错误处理和用户反馈
+- Initial release
+- System tray application with context menu
+- Support for quick switching between US Eastern Time and Amsterdam Time
+- Added screen lock prevention functionality
+- Application icon and basic UI
+- Error handling and user feedback
 
-### 技术细节
+### Technical Details
 
-- 基于.NET 6.0 Windows Forms
-- 使用Windows API进行时区切换和防止屏幕锁定
-- 支持Windows 10/11
+- Based on .NET 6.0 Windows Forms
+- Uses Windows API for time zone switching and screen lock prevention
+- Supports Windows 10/11
