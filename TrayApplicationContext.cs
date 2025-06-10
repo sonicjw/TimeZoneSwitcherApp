@@ -10,18 +10,12 @@ namespace TimeZoneSwitcherApp
     {
         private NotifyIcon _notifyIcon;
         private ContextMenuStrip _contextMenuStrip;
-        private ToolStripMenuItem _menuItemSwitchToEST;
-        private ToolStripMenuItem _menuItemSwitchToCET;
         private ToolStripMenuItem _menuItemEnablePreventLock;
         private ToolStripMenuItem _menuItemDisablePreventLock;
         private ToolStripMenuItem _menuItemExit;
 
         private System.Windows.Forms.Timer _preventLockTimer;
         private bool _isPreventLockScreenActive = false;
-
-        // Time Zone IDs
-        private const string EasternStandardTimeId = "Eastern Standard Time";
-        private const string CentralEuropeanStandardTimeId = "W. Europe Standard Time"; // 修改为阿姆斯特丹的确切时区ID
 
         // For preventing system sleep/lock screen
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -45,26 +39,20 @@ namespace TimeZoneSwitcherApp
         private void InitializeComponents()
         {
             // Create Context Menu Items
-            _menuItemSwitchToEST = new ToolStripMenuItem("Switch to US Eastern Time", null, OnSwitchToESTClicked);
-            _menuItemSwitchToCET = new ToolStripMenuItem("Switch to Amsterdam Time (W. Europe)", null, OnSwitchToCETClicked);
             _menuItemEnablePreventLock = new ToolStripMenuItem("Enable Prevent Lock Screen", null, OnEnablePreventLockScreenClicked);
             _menuItemDisablePreventLock = new ToolStripMenuItem("Disable Prevent Lock Screen", null, OnDisablePreventLockScreenClicked);
             _menuItemExit = new ToolStripMenuItem("Exit", null, OnExitClicked);
 
             // Create Context Menu
             _contextMenuStrip = new ContextMenuStrip();
-            _contextMenuStrip.Items.Add(_menuItemSwitchToEST);
-            _contextMenuStrip.Items.Add(_menuItemSwitchToCET);
-            _contextMenuStrip.Items.Add(new ToolStripSeparator());
             _contextMenuStrip.Items.Add(_menuItemEnablePreventLock);
             _contextMenuStrip.Items.Add(_menuItemDisablePreventLock);
-            _contextMenuStrip.Items.Add(new ToolStripSeparator());
             _contextMenuStrip.Items.Add(_menuItemExit);
 
             // Create NotifyIcon
             _notifyIcon = new NotifyIcon
             {
-                Text = "Time Zone & Lock Screen Manager",
+                Text = "Screen Lock Preventer",
                 ContextMenuStrip = _contextMenuStrip,
                 Visible = true
             };
@@ -93,22 +81,12 @@ namespace TimeZoneSwitcherApp
         }
 
         // Event Handlers for Menu Items
-        private void OnSwitchToESTClicked(object sender, EventArgs e)
-        {
-            SwitchTimeZone(EasternStandardTimeId);
-        }
-
-        private void OnSwitchToCETClicked(object sender, EventArgs e)
-        {
-            SwitchTimeZone(CentralEuropeanStandardTimeId);
-        }
-
         private void OnEnablePreventLockScreenClicked(object sender, EventArgs e)
         {
             _isPreventLockScreenActive = true;
             
             // Set the execution state to prevent system sleep and display from turning off
-            SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED | EXECUTION_STATE.ES_DISPLAY_REQUIRED);
+            SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED);
             
             // Start the timer to periodically reset the execution state
             _preventLockTimer.Start();
@@ -145,37 +123,12 @@ namespace TimeZoneSwitcherApp
         }
 
         // Core Logic Methods
-        private static void SwitchTimeZone(string timeZoneId)
-        {
-            try
-            {
-                ProcessStartInfo psi = new("tzutil.exe", $"/s \"{timeZoneId}\"")
-                {
-                    Verb = "runas", // Request administrator privileges
-                    UseShellExecute = true,
-                    CreateNoWindow = true,
-                    WindowStyle = ProcessWindowStyle.Hidden
-                };
-                Process.Start(psi)?.WaitForExit(); // Wait for the process to complete
-                MessageBox.Show($"System time zone switched to: {timeZoneId}", "Time Zone Switched", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (System.ComponentModel.Win32Exception ex)
-            {
-                // This exception often occurs if the user cancels the UAC prompt or if tzutil.exe is not found.
-                MessageBox.Show($"Failed to switch time zone. Administrator privileges might be required or the operation was cancelled.\nError: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while switching time zone: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void PreventLockTimer_Tick(object sender, EventArgs e)
         {
             // Periodically reset the execution state to ensure the system stays awake
             if (_isPreventLockScreenActive)
             {
-                SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED | EXECUTION_STATE.ES_DISPLAY_REQUIRED);
+                SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED);
                 Console.WriteLine($"Reset execution state at {DateTime.Now}"); // For debugging
             }
         }
